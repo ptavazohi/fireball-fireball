@@ -83,7 +83,7 @@
         use M_dynamics
 
 !/ NAC
-        use M_non_adiabatic
+        use M_non_adiabatic_coupling
 
         implicit none
 
@@ -134,7 +134,7 @@
 
         real sigma
         real time                       !< simulation time
-
+        type(T_NAC_vars) :: nac_vars
         character (len = 25) :: slogfile
 
 ! --------------------------------------------------------------------------
@@ -458,6 +458,7 @@
 !               D E S T R O Y   A R R A Y S - F I N A L I Z E
 ! ---------------------------------------------------------------------------
 ! ===========================================================================
+        call NAC_initialize(nac_vars,s)
 ! Destroy datafile storage
         call destroy_Fdata_1C
         call destroy_Fdata_2C
